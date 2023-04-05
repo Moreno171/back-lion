@@ -35,7 +35,29 @@ app.use((request, response, next) => {
     next()
 })
 
-    //endPoint
-    app.get('/v1/lion-school/cursos', cors(), async function (response, next){
-        
+    //endPoint que recupera uma lista de todos os cursos oferecidos pela escola
+    app.get('/v1/lion-school/cursos', cors(), async function (request, response, next){
+        //chama a função que retorna os cursos
+        let todosOsCursos = funcao.getCursos()
+        //Tratamento para validar se a função realizou o processamento
+        if (todosOsCursos){
+            response.json(todosOsCursos)
+            response.status(200)
+        }else{
+            response.status(500)
+        }
     })
+
+    //endPoint que recupera uma lista de todos os alunos matriculados na escola
+    app.get('/v1/lion-school/alunos', cors(), async function (request, response, next){
+        //chama a função que retorna os alunos
+        let todosOsAlunos = funcao.getListaDosAlunos
+        //Tratamento para validar se a função realizou o processamento
+        if (todosOsAlunos){
+            response.json(todosOsAlunos)
+            response.status(200)
+        }else{
+            response.status(500)
+        }
+    })
+
