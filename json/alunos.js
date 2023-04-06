@@ -684,3 +684,6 @@ var alunos = [
             "status" : "Cursando"
         }
     ];
+    module.exports = {
+        alunos
+    }
