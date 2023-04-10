@@ -49,17 +49,24 @@ app.use((request, response, next) => {
     })
 
     //endPoint que recupera uma lista de todos os alunos matriculados na escola
-    app.get('v1/lion-school/alunos/status', cors(), async function (request, response, next){
+    app.get('/v1/lion-school/alunos', cors(), async function (request, response, next){
+
+let jsonA = {}
+
         //chama a função que retorna os alunos
         let todosOsAlunos = funcao.getListaDosAlunos()
+
         //Tratamento para validar se a função realizou o processamento
         if (todosOsAlunos){
-            response.json(todosOsAlunos)
+        jsonA = todosOsAlunos
             response.status(200)
         }else{
             response.status(500)
         }
+
+        response.json(jsonA)
     })
+
 // 	endPoint para recupera uma lista de todos os alunos matriculados em um dos cursos.
     app.get('/v1/lion-school/alunos/matricula', cors(), async function (request, response, next){
     
@@ -117,8 +124,8 @@ app.use((request, response, next) => {
         dadosStatus.message = "Não é possivel processar a requisição pois o status não está correto"
 
     }else{
-        // let alunoStatus = funcao.getcursoEspecifico(statusDoAluno)
-        console.log(alunoStatus);
+        let alunoStatus = funcao.getcursoEspecifico(statusDoAluno)
+        // console.log(alunoStatus);
         
 
         if (alunoStatus){

@@ -22,7 +22,7 @@ function getCursos (){
 
     return cursosJ
 }
-console.log(getCursos());
+// console.log(getCursos());
 
 
 const getListaDosAlunos = function(){
@@ -138,7 +138,7 @@ const getMatricula = function(matricula){
         return status
     }
 }
-console.log(getMatricula('20151001024'));
+// console.log(getMatricula('20151001024'));
 
 const getcursoEspecifico = function($cursoSigla){
     const todosAlunosJson = {}
@@ -196,9 +196,9 @@ const getcursoEspecifico = function($cursoSigla){
         return status
     }
 }
- getcursoEspecifico('ds');
+//  getcursoEspecifico('ds');
 
-console.log(getcursoEspecifico('ds'));
+// console.log(getcursoEspecifico('ds'));
  
 
 
