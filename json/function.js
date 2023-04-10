@@ -22,7 +22,7 @@ function getCursos (){
 
     return cursosJ
 }
-// console.log(getCursos());
+console.log(getCursos());
 
 
 const getListaDosAlunos = function(){
@@ -83,7 +83,7 @@ const getListaDosAlunos = function(){
 
 
 }
-// console.log(getListaDosAlunos())
+console.log(getListaDosAlunos())
 
 
 const getMatricula = function(matricula){
@@ -198,7 +198,7 @@ const getcursoEspecifico = function($cursoSigla){
 }
  getcursoEspecifico('ds');
 
-//  console.log(getcursoEspecifico('ds'));
+console.log(getcursoEspecifico('ds'));
  
 
 

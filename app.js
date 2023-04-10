@@ -49,7 +49,7 @@ app.use((request, response, next) => {
     })
 
     //endPoint que recupera uma lista de todos os alunos matriculados na escola
-    app.get('/v1/lion-school/alunos', cors(), async function (request, response, next){
+    app.get('v1/lion-school/alunos/status', cors(), async function (request, response, next){
         //chama a função que retorna os alunos
         let todosOsAlunos = funcao.getListaDosAlunos()
         //Tratamento para validar se a função realizou o processamento
@@ -61,7 +61,7 @@ app.use((request, response, next) => {
         }
     })
 // 	endPoint para recupera uma lista de todos os alunos matriculados em um dos cursos.
-    app.get('/v1/lion-school/alunos/{matricula}', cors(), async function (request, response, next){
+    app.get('/v1/lion-school/alunos/matricula', cors(), async function (request, response, next){
     
         let numeroDaMatricula = request.query.matricula
 
@@ -89,11 +89,11 @@ app.use((request, response, next) => {
 
         let siglaDoCurso = request.query.sigla
 
-        if (siglaDoCurso == '' || siglaDoCurso == undefined || !isString(siglaDoCurso)){
+        if (siglaDoCurso == '' || siglaDoCurso == undefined){
             statusCode = 400
             dadosDoCurso.message = "Não é possivel processar a requisição pois a sigla não foi escrita corretamente"
         }else{
-            let curso = funcao.getsiglaDoCurso(siglaDoCurso)
+            let curso = funcao.getcursoEspecifico(siglaDoCurso)
 
             if (curso){
             statusCode = 400
@@ -110,19 +110,21 @@ app.use((request, response, next) => {
     app.get('/v1/lion-school/alunos/status', cors(), async function (request, response, next){
 
     let statusDoAluno = request.query.status
+    const dadosStatus = {}
 
-    if (statusDoAluno == ''|| statusDoAluno == undefined || !isString(statusDoAluno)){
+    if (statusDoAluno == ''|| statusDoAluno == undefined){
         statusDoAluno = 400
         dadosStatus.message = "Não é possivel processar a requisição pois o status não está correto"
 
     }else{
-        let alunoStatus = funcao.getcursoEspecifico(statusDoAluno)
+        // let alunoStatus = funcao.getcursoEspecifico(statusDoAluno)
         console.log(alunoStatus);
         
 
         if (alunoStatus){
             statusCode = 400
             dadosStatus = alunoStatus
+            console.log(dadosStatus)
 
 
         }else{
