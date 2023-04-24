@@ -1,38 +1,38 @@
 const cursosJson = require('./cursos.js')
 const estudante = require('./alunos.js')
- 
-function getCursos (){
+
+function getCursos() {
 
     let cursosJ = {}
     let array = []
 
-  cursosJson.cursos.forEach(function(cursosFill){
+    cursosJson.cursos.forEach(function (cursosFill) {
 
-    let json = {
-        icon:cursosFill.icone,
-         nome:cursosFill.nome,
-         sigla:cursosFill.sigla,
-         carga:cursosFill.carga
+        let json = {
+            icon: cursosFill.icone,
+            nome: cursosFill.nome,
+            sigla: cursosFill.sigla,
+            carga: cursosFill.carga
         }
 
-         array.push(json)   
+        array.push(json)
     })
 
-    cursosJ.curso =  array
+    cursosJ.curso = array
 
     return cursosJ
 }
 // console.log(getCursos());
 
 
-const getListaDosAlunos = function(){
+const getListaDosAlunos = function () {
     const estudanteJson = {}
     const estudanteArray = []
-     
-    
+
+
     let status = false
 
-    estudante.alunos.forEach (function(infoEstudante){
+    estudante.alunos.forEach(function (infoEstudante) {
         status = true
         const infoEstudanteJson = {
             foto: infoEstudante.foto,
@@ -40,11 +40,11 @@ const getListaDosAlunos = function(){
             matricula: infoEstudante.matricula,
             sexo: infoEstudante.sexo
         }
-        infoEstudante.curso.forEach(function(infoCurso){
+        infoEstudante.curso.forEach(function (infoCurso) {
             const infoCursoArray = []
             const infoCursoJson = {
-                
-                nome:infoCurso.nome,
+
+                nome: infoCurso.nome,
                 sigla: infoCurso.sigla,
                 icone: infoCurso.icone,
                 carga: infoCurso.carga,
@@ -56,7 +56,7 @@ const getListaDosAlunos = function(){
             infoCursoJson.status = infoEstudante.status
 
             const infoDisciplinaArray = []
-            infoCurso.disciplinas.forEach(function(infoDisciplina){
+            infoCurso.disciplinas.forEach(function (infoDisciplina) {
                 const infoDisciplinaJson = {
                     nome: infoDisciplina.nome,
                     carga: infoDisciplina.carga,
@@ -70,39 +70,39 @@ const getListaDosAlunos = function(){
 
         })
         estudanteArray.push(infoEstudanteJson)
-        
+
 
     })
     estudanteJson.alunos = estudanteArray
-    if(status){
+    if (status) {
         return estudanteJson
-    }else{
+    } else {
         return status
     }
-    
+
 
 
 }
-console.log(getListaDosAlunos())
+//console.log(getListaDosAlunos())
 
 
-const getMatricula = function(matricula){
+const getMatricula = function (matricula) {
     const estudanteJson = {}
     const estudanteArray = []
 
     let status = false
 
-    estudante.alunos.forEach(function(infoEstudante){
-        if(infoEstudante.matricula == matricula){
+    estudante.alunos.forEach(function (infoEstudante) {
+        if (infoEstudante.matricula == matricula) {
             status = true
             const infoEstudanteJson = {
                 foto: infoEstudante.foto,
                 nome: infoEstudante.nome,
                 matricula: infoEstudante.matricula,
                 sexo: infoEstudante.sexo
-    
+
             }
-            infoEstudante.curso.forEach(function(infoCurso){
+            infoEstudante.curso.forEach(function (infoCurso) {
                 const infoCursoArray = []
                 const infoCursoJson = {
                     nome: infoCurso.nome,
@@ -114,14 +114,14 @@ const getMatricula = function(matricula){
                 infoCursoArray.push(infoCursoJson)
                 infoEstudanteJson.curso = infoCursoArray
                 infoEstudanteJson.status = infoEstudante.status
-    
+
                 const infoDisciplinaArray = []
-                infoCurso.disciplinas.forEach(function(infoDisciplina){
+                infoCurso.disciplinas.forEach(function (infoDisciplina) {
                     const infoDisciplinaJson = {
-                        nome:infoDisciplina.nome,
-                        carga:infoDisciplina.carga,
-                        media:infoDisciplina.media,
-                        status:infoDisciplina.status
+                        nome: infoDisciplina.nome,
+                        carga: infoDisciplina.carga,
+                        media: infoDisciplina.media,
+                        status: infoDisciplina.status
                     }
                     infoDisciplinaArray.push(infoDisciplinaJson)
                     infoCursoJson.disciplinas = infoDisciplinaArray
@@ -129,25 +129,25 @@ const getMatricula = function(matricula){
             })
             estudanteArray.push(infoEstudanteJson)
         }
-       
+
     })
     estudanteJson.alunos = estudanteArray
-    if(status){
+    if (status) {
         return estudanteJson
-    }else{
+    } else {
         return status
     }
 }
 // console.log(getMatricula('20151001024'));
 
-const getcursoEspecifico = function($cursoSigla){
+const getcursoEspecifico = function ($cursoSigla) {
     const todosAlunosJson = {}
     const todosAlunosArray = []
     let status = false
 
-    estudante.alunos.forEach(function($curso){
-        $curso.curso.forEach(function($data){
-            if($cursoSigla.toUpperCase() == $data.sigla.toUpperCase()){
+    estudante.alunos.forEach(function ($curso) {
+        $curso.curso.forEach(function ($data) {
+            if ($cursoSigla.toUpperCase() == $data.sigla.toUpperCase()) {
                 status = true
                 infoEstudante = {
                     foto: $curso.foto,
@@ -155,7 +155,7 @@ const getcursoEspecifico = function($cursoSigla){
                     matricula: $curso.matricula,
                     sexo: $curso.sexo
                 }
-                $curso.curso.forEach(function($cursoData){
+                $curso.curso.forEach(function ($cursoData) {
                     infoCursoArray = []
                     infoCurso = {
                         nome: $cursoData.nome,
@@ -164,14 +164,14 @@ const getcursoEspecifico = function($cursoSigla){
                         carga: $cursoData.carga,
                         conclusao: $cursoData.conclusao
                     }
-                    
+
                     infoDisciplinaArray = []
-                    $cursoData.disciplinas.forEach(function($disciplinaData){
+                    $cursoData.disciplinas.forEach(function ($disciplinaData) {
                         const infoDisciplinaJson = {} //
                         infoDisciplinaJson.nome = $disciplinaData.nome,
-                        infoDisciplinaJson.carga = $disciplinaData.carga,
-                        infoDisciplinaJson.media = $disciplinaData.media,
-                        infoDisciplinaJson.status = $disciplinaData.status
+                            infoDisciplinaJson.carga = $disciplinaData.carga,
+                            infoDisciplinaJson.media = $disciplinaData.media,
+                            infoDisciplinaJson.status = $disciplinaData.status
 
                         console.log(infoDisciplinaArray)
                         infoDisciplinaArray.push(infoDisciplinaJson)
@@ -189,23 +189,55 @@ const getcursoEspecifico = function($cursoSigla){
         })
     })
     todosAlunosJson.alunos = todosAlunosArray
-    if(status){
+    if (status) {
         return todosAlunosJson
 
-    }else{
+    } else {
         return status
     }
 }
 //  getcursoEspecifico('ds');
 
 // console.log(getcursoEspecifico('ds'));
- 
+
+const getStatusAluno = function (statusAluno) {
+    const statusJson = {}
+    const statusArray = []
+
+    let status = false
+
+    estudante.alunos.forEach(function (infoStatus) {
+        status = true
+        if (infoStatus.status == statusAluno) {
+            const infostatusJson = {
+                foto: infoStatus.foto,
+                nome: infoStatus.nome,
+                matricula: infoStatus.matricula,
+                status: infoStatus.status
+
+            }
+            statusArray.push(infostatusJson)
+
+        }
+
+    })
+
+    statusJson.alunos = statusArray
+
+    if (status) {
+        return statusJson
+    } else {
+        return status
+    }
 
 
+}
+// console.log(getStatusAluno('Cursando'))
 
 module.exports = {
-  getCursos,
-getListaDosAlunos,
-getMatricula,
-getcursoEspecifico
+    getCursos,
+    getListaDosAlunos,
+    getMatricula,
+    getcursoEspecifico,
+    getStatusAluno
 }
